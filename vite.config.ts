@@ -8,7 +8,7 @@ export default defineConfig({
     client: "./src/entry-client.tsx",
     ssr: "./src/entry-ssr.ts",
     apis: {
-      api: "./src/entry-api.ts",
+      hocuspocus: "./src/entry-hocuspocus.ts",
     },
   })],
 });

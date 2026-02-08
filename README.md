@@ -6,14 +6,13 @@ Starter template with the following stack:
 
 - [React](https://react.dev) (UI library)
 - [React Router](https://reactrouter.com) (Routing: Declarative mode)
-- [Base UI](https://base-ui.com) (Headless component library)
 - [Vanilla Extract](https://vanilla-extract.style) (Zero runtime CSS-in-JS)
+- [Tiptap](https://tiptap.dev) (Collaborative editing)
 
 ## Backend 
 
 - [Hono](https://hono.dev) (Server framework)
-- [Prisma](https://www.prisma.io/docs) (DB ORM)
-- [oRPC](https://orpc.unnoq.com) (RPC library)
+- [Hocuspocus](https://hocuspocus.dev) (Collaborative editing)
 
 ## Development
 

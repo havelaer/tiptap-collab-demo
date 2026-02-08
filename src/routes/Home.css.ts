@@ -39,9 +39,16 @@ export const logoReact = style({
 });
 
 export const card = style({
-    padding: "2em",
+    padding: "1em",
+    border: "1px solid #ccc",
+    borderRadius: "8px",
 });
 
 export const readTheDocs = style({
     color: "#888",
+});
+
+export const title = style({
+    fontSize: "1.5em",
+    marginBottom: "0.5em",
 });

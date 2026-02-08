@@ -17,7 +17,9 @@ const html = (assets: HtmlAssets) => `
 </html>
 `;
 
-export default async function fetch(_request: Request, ctx: Context): Promise<Response> {
+export default async function fetch(request: Request, ctx: Context): Promise<Response> {
+    console.log("ssr request", request.url);
+
     return new Response(html(ctx.assets), {
         headers: {
             "Content-Type": "text/html",
