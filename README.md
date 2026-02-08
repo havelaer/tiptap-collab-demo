@@ -1,6 +1,6 @@
-# Havelaer
+# TipTap + Hocuspocus Demo
 
-Starter template with the following stack:
+Based on the template from [Havelaer Start](https://github.com/havelaer/start).
 
 ## Frontend
 
