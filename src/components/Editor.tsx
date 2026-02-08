@@ -1,7 +1,9 @@
 import { HocuspocusProvider } from "@hocuspocus/provider";
+import { useMutation } from "@tanstack/react-query";
 import Collaboration from "@tiptap/extension-collaboration";
 import CollaborationCaret from "@tiptap/extension-collaboration-caret";
 import { EditorContent, useEditor } from "@tiptap/react";
+import { BubbleMenu } from "@tiptap/react/menus";
 import StarterKit from "@tiptap/starter-kit";
 import { useCallback, useEffect, useMemo, useRef } from "react";
 import * as Y from "yjs";
@@ -37,9 +39,6 @@ function caretLabelRender(user: Record<string, unknown>) {
 
     const label = document.createElement("div");
     label.classList.add(css.caretsLabel);
-    if (user.typing) {
-        label.classList.add(css.caretsLabelTyping);
-    }
     label.setAttribute("style", `background-color: ${user.color ?? "#94a3b8"}`);
     const name = typeof user.name === "string" ? user.name : "User";
     label.insertBefore(document.createTextNode(name), null);
@@ -60,9 +59,9 @@ export function Editor() {
         return p;
     }, [ydoc]);
 
-    useEffect(() => {
-        client.sources.findSourcesMock({ query: "1672 kennen we ook als het rampjaar" });
-    }, []);
+    const findSourcesMutation = useMutation({
+        mutationFn: (query: string) => client.sources.findSourcesMock({ query }),
+    });
 
     const typingTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const TYPING_DEBOUNCE_MS = 2000;
@@ -128,6 +127,46 @@ export function Editor() {
     return (
         <div className={css.root}>
             <EditorContent editor={editor} />
+            <BubbleMenu editor={editor} options={{ placement: "bottom", offset: 8, flip: true }}>
+                <div className={css.bubbleMenu}>
+                    {!findSourcesMutation.data ? (
+                        <div className={css.bubbleMenuActions}>
+                            <button
+                                className={css.bubbleMenuButton}
+                                onClick={() =>
+                                    findSourcesMutation.mutate(
+                                        editor
+                                            .getText()
+                                            .slice(
+                                                editor.state.selection.from - 1,
+                                                editor.state.selection.to - 1,
+                                            ),
+                                    )
+                                }
+                                type="button"
+                            >
+                                Zoek referenties
+                            </button>
+                        </div>
+                    ) : (
+                        <div className={css.bubbleMenuResults}>
+                            {findSourcesMutation.data.map((source) => (
+                                <button
+                                    key={source.url}
+                                    className={css.bubbleMenuResultItem}
+                                    onClick={() => window.open(source.url, "_blank")}
+                                    type="button"
+                                >
+                                    <div className={css.bubbleMenuResultTitle}>{source.title}</div>
+                                    <div className={css.bubbleMenuResultUrl}>
+                                        {source.url.replace("https://", "")}
+                                    </div>
+                                </button>
+                            ))}
+                        </div>
+                    )}
+                </div>
+            </BubbleMenu>
         </div>
     );
 }

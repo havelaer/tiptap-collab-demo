@@ -51,8 +51,60 @@ export const caretsLabel = style({
     fontSize: "0.7em",
     whiteSpace: "nowrap",
     pointerEvents: "none",
+    color: "#fff",
 });
 
-export const caretsLabelTyping = style({
-    fontStyle: "italic",
+export const bubbleMenu = style({
+    padding: "3px",
+    background: "white",
+    color: "#333",
+    borderRadius: "6px",
+    boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+});
+
+export const bubbleMenuActions = style({
+    display: "flex",
+    gap: "4px",
+    flexDirection: "row",
+});
+
+export const bubbleMenuButton = style({
+    appearance: "none",
+    border: "none",
+    padding: "4px 6px",
+    borderRadius: "3px",
+    background: "white",
+    ":hover": {
+        background: "#f0f0f0",
+    },
+});
+
+export const bubbleMenuResults = style({
+    display: "flex",
+    gap: "4px",
+    flexDirection: "column",
+});
+
+export const bubbleMenuResultItem = style({
+    appearance: "none",
+    border: "none",
+    padding: "4px 6px",
+    borderRadius: "3px",
+    background: "white",
+    flexDirection: "column",
+    textAlign: "left",
+    alignItems: "flex-start",
+    lineHeight: "1.3",
+    ":hover": {
+        background: "#f0f0f0",
+    },
+});
+
+export const bubbleMenuResultTitle = style({
+    
+});
+
+export const bubbleMenuResultUrl = style({
+    fontSize: "0.8em",
+    color: "#666",
 });
