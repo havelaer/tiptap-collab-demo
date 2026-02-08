@@ -44,7 +44,7 @@ export const card = style({
     borderRadius: "8px",
 });
 
-export const readTheDocs = style({
+export const paragraph = style({
     color: "#888",
 });
 

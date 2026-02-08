@@ -9,6 +9,7 @@ export default defineConfig({
     ssr: "./src/entry-ssr.ts",
     apis: {
       hocuspocus: "./src/entry-hocuspocus.ts",
+      rpc: "./src/entry-rpc.ts",
     },
   })],
 });

@@ -4,11 +4,14 @@ import * as css from "./Home.css.ts";
 export function Home() {
     return (
         <>
-            <h1 className={css.title}>Tiptap + Y.js demo</h1>
-            <p className={css.readTheDocs}>Open deze pagina in een tweede tab of venster.</p>
+            <h1 className={css.title}>Tiptap Hocuspocus demo</h1>
+            <p className={css.paragraph}>Open deze pagina in een tweede tab of venster.</p>
             <div className={css.card}>
                 <Editor />
             </div>
+			<p className={css.paragraph}>
+				<a href="https://github.com/havelaer/tiptap-collab-demo" target="_blank" rel="noopener noreferrer">GitHub</a>
+			</p>
         </>
     );
 }

@@ -47,6 +47,7 @@ export const caretsLabel = style({
     top: "-1.6em",
     padding: "0.1em 0.4em",
     borderRadius: "3px",
+    borderBottomLeftRadius: 0,
     fontSize: "0.7em",
     whiteSpace: "nowrap",
     pointerEvents: "none",

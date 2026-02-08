@@ -5,6 +5,7 @@ import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { useCallback, useEffect, useMemo, useRef } from "react";
 import * as Y from "yjs";
+import { client } from "../utils/orpc.ts";
 import * as css from "./Editor.css.ts";
 
 const WS_URL = import.meta.env.VITE_WS_URL ?? "ws://localhost:5175";
@@ -58,6 +59,10 @@ export function Editor() {
         });
         return p;
     }, [ydoc]);
+
+    useEffect(() => {
+        client.sources.findSourcesMock({ query: "1672 kennen we ook als het rampjaar" });
+    }, []);
 
     const typingTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const TYPING_DEBOUNCE_MS = 2000;

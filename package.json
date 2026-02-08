@@ -12,6 +12,7 @@
     "sync-server": "y-websocket"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.74.0",
     "@base-ui-components/react": "^1.0.0-rc.0",
     "@hocuspocus/provider": "^3.4.4",
     "@hocuspocus/server": "^3.4.4",
