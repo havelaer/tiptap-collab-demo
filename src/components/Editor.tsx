@@ -52,7 +52,7 @@ export function Editor() {
     const user = useMemo(() => randomUser(), []);
     const provider = useMemo(() => {
         const p = new HocuspocusProvider({
-            url: WS_URL,
+            url: `${WS_URL}/hocuspocus`,
             name: "example-document",
             document: ydoc,
         });

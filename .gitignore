@@ -16,3 +16,4 @@ generated
 !.vscode/extensions.json
 .idea
 .DS_Store
+tsconfig.node.tsbuildinfo
