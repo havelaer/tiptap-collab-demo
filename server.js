@@ -13,7 +13,7 @@ app.use(compress());
 app.use(serveStatic({ root: "./dist/client" }));
 
 const hocuspocus = new Hocuspocus({
-  name: "hocuspocus-ams1-01",
+  name: "hocuspocus",
   timeout: 30000,
   debounce: 5000,
   maxDebounce: 30000,
