@@ -7,12 +7,13 @@ Based on the template from [Havelaer Start](https://github.com/havelaer/start).
 - [React](https://react.dev) (UI library)
 - [React Router](https://reactrouter.com) (Routing: Declarative mode)
 - [Vanilla Extract](https://vanilla-extract.style) (Zero runtime CSS-in-JS)
-- [Tiptap](https://tiptap.dev) (Collaborative editing)
+- [Tiptap](https://tiptap.dev) (Editor)
+- [Hocuspocus Provider](https://hocuspocus.dev) (Collaborative editing)
 
 ## Backend 
 
 - [Hono](https://hono.dev) (Server framework)
-- [Hocuspocus](https://hocuspocus.dev) (Collaborative editing)
+- [Hocuspocus Server](https://hocuspocus.dev) (Collaborative editing)
 
 ## Development
 
