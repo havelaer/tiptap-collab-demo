@@ -108,3 +108,14 @@ export const bubbleMenuResultUrl = style({
     fontSize: "0.8em",
     color: "#666",
 });
+
+export const bubbleMenuClear = style({
+    appearance: "none",
+    border: "none",
+    padding: "4px 6px",
+    borderRadius: "3px",
+    background: "white",
+    ":hover": {
+        background: "#f0f0f0",
+    },
+});

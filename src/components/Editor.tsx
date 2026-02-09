@@ -40,6 +40,7 @@ function caretLabelRender(user: Record<string, unknown>) {
     const label = document.createElement("div");
     label.classList.add(css.caretsLabel);
     label.setAttribute("style", `background-color: ${user.color ?? "#94a3b8"}`);
+
     const name = typeof user.name === "string" ? user.name : "User";
     label.insertBefore(document.createTextNode(name), null);
     cursor.insertBefore(label, null);
@@ -59,8 +60,9 @@ export function Editor() {
         return p;
     }, [ydoc]);
 
+    // TODO: use lazy query instead of mutation
     const findSourcesMutation = useMutation({
-        mutationFn: (query: string) => client.sources.findSourcesMock({ query }),
+        mutationFn: (query: string) => client.sources.findSources({ query }),
     });
 
     const typingTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -150,6 +152,9 @@ export function Editor() {
                         </div>
                     ) : (
                         <div className={css.bubbleMenuResults}>
+                            <button className={css.bubbleMenuClear} onClick={() => findSourcesMutation.reset()} type="button">
+                                x
+                            </button>
                             {findSourcesMutation.data.map((source) => (
                                 <button
                                     key={source.url}
