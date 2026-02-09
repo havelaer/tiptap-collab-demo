@@ -52,3 +52,8 @@ export const title = style({
     fontSize: "1.5em",
     marginBottom: "0.5em",
 });
+
+export const qrCode = style({
+    width: "100%",
+    maxWidth: "200px",
+});

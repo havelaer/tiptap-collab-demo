@@ -1,14 +1,13 @@
 import { HocuspocusProvider } from "@hocuspocus/provider";
-import { useMutation } from "@tanstack/react-query";
 import Collaboration from "@tiptap/extension-collaboration";
 import CollaborationCaret from "@tiptap/extension-collaboration-caret";
 import { EditorContent, useEditor } from "@tiptap/react";
-import { BubbleMenu } from "@tiptap/react/menus";
 import StarterKit from "@tiptap/starter-kit";
 import { useCallback, useEffect, useMemo, useRef } from "react";
 import * as Y from "yjs";
-import { client } from "../utils/orpc.ts";
 import * as css from "./Editor.css.ts";
+
+// import { SourcesPopover } from "./SourcesPopover.tsx";
 
 const WS_URL = import.meta.env.VITE_WS_URL ?? "ws://localhost:5175";
 
@@ -59,11 +58,6 @@ export function Editor() {
         });
         return p;
     }, [ydoc]);
-
-    // TODO: use lazy query instead of mutation
-    const findSourcesMutation = useMutation({
-        mutationFn: (query: string) => client.sources.findSources({ query }),
-    });
 
     const typingTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const TYPING_DEBOUNCE_MS = 2000;
@@ -129,49 +123,8 @@ export function Editor() {
     return (
         <div className={css.root}>
             <EditorContent editor={editor} />
-            <BubbleMenu editor={editor} options={{ placement: "bottom", offset: 8, flip: true }}>
-                <div className={css.bubbleMenu}>
-                    {!findSourcesMutation.data ? (
-                        <div className={css.bubbleMenuActions}>
-                            <button
-                                className={css.bubbleMenuButton}
-                                onClick={() =>
-                                    findSourcesMutation.mutate(
-                                        editor
-                                            .getText()
-                                            .slice(
-                                                editor.state.selection.from - 1,
-                                                editor.state.selection.to - 1,
-                                            ),
-                                    )
-                                }
-                                type="button"
-                            >
-                                Zoek referenties
-                            </button>
-                        </div>
-                    ) : (
-                        <div className={css.bubbleMenuResults}>
-                            <button className={css.bubbleMenuClear} onClick={() => findSourcesMutation.reset()} type="button">
-                                x
-                            </button>
-                            {findSourcesMutation.data.map((source) => (
-                                <button
-                                    key={source.url}
-                                    className={css.bubbleMenuResultItem}
-                                    onClick={() => window.open(source.url, "_blank")}
-                                    type="button"
-                                >
-                                    <div className={css.bubbleMenuResultTitle}>{source.title}</div>
-                                    <div className={css.bubbleMenuResultUrl}>
-                                        {source.url.replace("https://", "")}
-                                    </div>
-                                </button>
-                            ))}
-                        </div>
-                    )}
-                </div>
-            </BubbleMenu>
+            {/* Only works on Desktop, comment out for now */}
+            {/* <SourcesPopover editor={editor} /> */}
         </div>
     );
 }
